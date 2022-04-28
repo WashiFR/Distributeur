@@ -38,8 +38,10 @@ def monnais(argent=0):
     global l_piece_rendu
     for i in range(len(l_piece_rendre)):
         l_piece_rendu.append(0)
-    if argent-int(dico[choix]) >= 0:
-        presence_piece = True
+    if argent == 0:
+        presence_piece = 'non'
+    elif argent-int(dico[choix]) >= 0:
+        presence_piece = 'oui'
         valeur_a_rendre = argent-int(dico[choix])
         while valeur_a_rendre > 0:
             if valeur_a_rendre >= l_piece_rendre[x]:
@@ -47,13 +49,13 @@ def monnais(argent=0):
                 l_piece_rendu[x] += 1
             elif valeur_a_rendre < l_piece_rendre[x]:
                 x += 1
-    else:
-        presence_piece = False
+    elif argent-int(dico[choix]) < 0:
+        presence_piece = 'pas assez'
     
     #créer une nouvelle page
     new_page = Toplevel(page)
     #si argent suffisant alors...
-    if presence_piece == True:
+    if presence_piece == 'oui':
         texte_piece = Label(new_page, text='Pièces rendus :\n'
         'pièce 2.00 € : '+str(l_piece_rendu[0])+'\n'
         'pièce 1.00 € : '+str(l_piece_rendu[1])+'\n'
@@ -65,13 +67,18 @@ def monnais(argent=0):
         'pièce 0.01 € : '+str(l_piece_rendu[7])+'\n').pack()
         
         ok_button = Button(new_page, text='ok', command=lambda:[reinitalisation(),new_page.destroy()]).pack()
-    #si argent pas suffisant alors...
-    elif presence_piece == False:
+    #si argent pas suffisant alors...    
+    elif presence_piece == 'pas assez':
+        texte_piece = Label(new_page, text="Pas assez de pièces").pack()
+        
+        ok_button = Button(new_page, text='ok', command=lambda:[reinitalisation(),new_page.destroy()]).pack()
+    #si aucune pièce alors...
+    elif presence_piece == 'non':
         texte_piece = Label(new_page, text="Aucune pièce n'a été inséré").pack()
         
         ok_button = Button(new_page, text='ok', command=lambda:[reinitalisation(),new_page.destroy()]).pack()
 
-
+        
 #créer la page
 page = Tk()
 page.title('distributeur')
