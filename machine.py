@@ -1,8 +1,13 @@
 from tkinter import *
 import csv
+from turtle import color
 
 #écrire l'endroit ou se trouve le dossier du code + image
-path = #mettez l'endroit où se trouve votre dossier
+path = '/home/washi/Documents/VSC/Python/Machine/'
+font = "Courrier"
+background = '#211946'
+fg = 'white'
+
 
 with open(path+'produit.csv', newline='') as csvfile:
     reader = csv.DictReader(csvfile)
@@ -16,7 +21,7 @@ argent = 0
 def piece_total(valeur):
     global argent
     argent += valeur
-    nb_piece_texte.configure(text='Argents insérés : '+str(float(argent/100))+' €')
+    nb_piece_texte.configure(text='Argents insérés : '+str(float(argent/100))+' €', font=font, bg=background, fg=fg)
 
 #réinitialise les variables
 def reinitalisation():
@@ -24,7 +29,7 @@ def reinitalisation():
     global argent
     l_piece_rendu = []
     argent = 0
-    nb_piece_texte.config(text='Argents insérés : '+str(float(argent/100))+' €')
+    nb_piece_texte.config(text='Argents insérés : '+str(float(argent/100))+' €', font=font, bg=background, fg=fg)
 
 
 def monnais(argent=0):
@@ -54,6 +59,7 @@ def monnais(argent=0):
     
     #créer une nouvelle page
     new_page = Toplevel(page)
+    new_page.configure(background=background)
     #si argent suffisant alors...
     if presence_piece == 'oui':
         texte_piece = Label(new_page, text='Pièces rendus :\n'
@@ -64,28 +70,29 @@ def monnais(argent=0):
         'pièce 0.10 € : '+str(l_piece_rendu[4])+'\n'
         'pièce 0.05 € : '+str(l_piece_rendu[5])+'\n'
         'pièce 0.02 € : '+str(l_piece_rendu[6])+'\n'
-        'pièce 0.01 € : '+str(l_piece_rendu[7])+'\n').pack()
+        'pièce 0.01 € : '+str(l_piece_rendu[7])+'\n', font=font, bg=background, fg=fg).pack()
         
-        ok_button = Button(new_page, text='ok', command=lambda:[reinitalisation(),new_page.destroy()]).pack()
+        ok_button = Button(new_page, text='ok', font=font, command=lambda:[reinitalisation(),new_page.destroy()]).pack()
     #si argent pas suffisant alors...    
     elif presence_piece == 'pas assez':
-        texte_piece = Label(new_page, text="Pas assez de pièces").pack()
+        texte_piece = Label(new_page, text="Pas assez de pièces", font=font, bg=background, fg=fg).pack()
         
-        ok_button = Button(new_page, text='ok', command=lambda:[reinitalisation(),new_page.destroy()]).pack()
+        ok_button = Button(new_page, text='ok', font=font, command=lambda:[reinitalisation(),new_page.destroy()]).pack()
     #si aucune pièce alors...
     elif presence_piece == 'non':
-        texte_piece = Label(new_page, text="Aucune pièce n'a été inséré").pack()
+        texte_piece = Label(new_page, text="Aucune pièce n'a été inséré", font=font, bg=background, fg=fg).pack()
         
-        ok_button = Button(new_page, text='ok', command=lambda:[reinitalisation(),new_page.destroy()]).pack()
+        ok_button = Button(new_page, text='ok', font=font, command=lambda:[reinitalisation(),new_page.destroy()]).pack()
 
-        
+
 #créer la page
 page = Tk()
 page.title('distributeur')
 page.geometry('1250x600')
+page.configure(background=background)
 
 #affiche nombre total de pièces insérés
-nb_piece_texte = Label(text='Argents insérés : '+str(float(argent/100))+' €')
+nb_piece_texte = Label(text='\nArgents insérés : '+str(float(argent/100))+' €', font=font, bg=background, fg=fg)
 
 #créer une listbox pour que la personne choisis son article
 lbx = Listbox(page)
@@ -104,9 +111,9 @@ piece100 = PhotoImage(file=path+'assets/piece100.png')
 piece200 = PhotoImage(file=path+'assets/piece200.png')
 
 lbx.pack()
-texte = Label(text='Prix :\nCafe : 0.50 €\nBonbon : 1.50 €\nEnfant : 2.00 €').pack()
+texte = Label(text='Cafe : 0.50 €\nBonbon : 1.50 €\nEnfant : 2.00 €', font=font, bg=background, fg=fg).pack()
 nb_piece_texte.pack()
-button_payer = Button(page, text='Payer', command=lambda:[monnais(argent)]).pack()
+button_payer = Button(page, text='Payer', font=font, command=lambda:[monnais(argent)]).pack()
 
 #les bouton seront sur la même ligne
 frame = Frame(page)
