@@ -76,12 +76,12 @@ def monnais(argent=0):
     elif presence_piece == 'pas assez':
         texte_piece = Label(new_page, text="Pas assez de pièces", font=font, bg=background, fg=fg).pack()
         
-        ok_button = Button(new_page, text='ok', font=font, command=lambda:[reinitalisation(),new_page.destroy()]).pack()
+        ok_button.pack()
     #si aucune pièce alors...
     elif presence_piece == 'non':
         texte_piece = Label(new_page, text="Aucune pièce n'a été inséré", font=font, bg=background, fg=fg).pack()
         
-        ok_button = Button(new_page, text='ok', font=font, command=lambda:[reinitalisation(),new_page.destroy()]).pack()
+        ok_button.pack()
 
 
 #créer la page
