@@ -3,7 +3,7 @@ import csv
 
 #écrire l'endroit ou se trouve le dossier du code + image
 path = #exemple : /home/washi/Documents/VSC/Python/Machine/
-font = "Courrier"
+font = ("Courrier", 15)
 background = '#211946'
 fg = 'white'
 
@@ -20,7 +20,7 @@ argent = 0
 def piece_total(valeur):
     global argent
     argent += valeur
-    nb_piece_texte.configure(text='Argents insérés : '+str(float(argent/100))+' €', font=font, bg=background, fg=fg)
+    nb_piece_texte.configure(text='\nArgents insérés : '+str(float(argent/100))+' €', font=font, bg=background, fg=fg)
 
 #réinitialise les variables
 def reinitalisation():
@@ -28,7 +28,7 @@ def reinitalisation():
     global argent
     l_piece_rendu = []
     argent = 0
-    nb_piece_texte.config(text='Argents insérés : '+str(float(argent/100))+' €', font=font, bg=background, fg=fg)
+    nb_piece_texte.config(text='\nArgents insérés : '+str(float(argent/100))+' €', font=font, bg=background, fg=fg)
 
 
 def monnais(argent=0):
@@ -61,7 +61,7 @@ def monnais(argent=0):
     new_page.configure(background=background)
     #si argent suffisant alors...
     if presence_piece == 'oui':
-        texte_piece = Label(new_page, text='Pièces rendus :\n'
+        texte_piece = Label(new_page, text='Pièces rendus :\n\n'
         'pièce 2.00 € : '+str(l_piece_rendu[0])+'\n'
         'pièce 1.00 € : '+str(l_piece_rendu[1])+'\n'
         'pièce 0.50 € : '+str(l_piece_rendu[2])+'\n'
