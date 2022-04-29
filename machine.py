@@ -1,6 +1,5 @@
 from tkinter import *
 import csv
-from turtle import color
 
 #écrire l'endroit ou se trouve le dossier du code + image
 path = #exemple : /home/washi/Documents/VSC/Python/Machine/
