@@ -3,7 +3,7 @@ import csv
 from turtle import color
 
 #écrire l'endroit ou se trouve le dossier du code + image
-path = '/home/washi/Documents/VSC/Python/Machine/'
+path = #exemple : /home/washi/Documents/VSC/Python/Machine/
 font = "Courrier"
 background = '#211946'
 fg = 'white'
