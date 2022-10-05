@@ -1,14 +1,14 @@
 from tkinter import *
 import csv
+import os
 
-#écrire l'endroit ou se trouve le dossier du code + image
-path = #exemple : /home/washi/Documents/VSC/Python/Machine/
+# permet de trouver l'ndroit où se trouve le fichier
+path = os.path.dirname(os.path.abspath(__file__))
 font = ("Courrier", 15)
 background = '#211946'
 fg = 'white'
 
-
-with open(path+'produit.csv', newline='') as csvfile:
+with open(path+'/produit.csv', newline='') as csvfile:
     reader = csv.DictReader(csvfile)
     dico = dict(list(reader)[0])
 
@@ -28,8 +28,7 @@ def reinitalisation():
     global argent
     l_piece_rendu = []
     argent = 0
-    nb_piece_texte.config(text='\nArgents insérés : '+str(float(argent/100))+' €', font=font, bg=background, fg=fg)
-
+    nb_piece_texte.configure(text='\nArgents insérés : '+str(float(argent/100))+' €', font=font, bg=background, fg=fg)
 
 def monnais(argent=0):
     #prend le texte de la listbox
@@ -83,7 +82,6 @@ def monnais(argent=0):
         
         ok_button.pack()
 
-
 #créer la page
 page = Tk()
 page.title('distributeur')
@@ -97,20 +95,20 @@ nb_piece_texte = Label(text='\nArgents insérés : '+str(float(argent/100))+' �
 lbx = Listbox(page)
 lbx.insert(1, 'Cafe')
 lbx.insert(2, 'Bonbon')
-lbx.insert(3, 'Chocolat')
+lbx.insert(3, 'Enfant')
 
 #avoir les images pour les utiliser
-piece1 = PhotoImage(file=path+'assets/piece1.png')
-piece2 = PhotoImage(file=path+'assets/piece2.png')
-piece5 = PhotoImage(file=path+'assets/piece5.png')
-piece10 = PhotoImage(file=path+'assets/piece10.png')
-piece20 = PhotoImage(file=path+'assets/piece20.png')
-piece50 = PhotoImage(file=path+'assets/piece50.png')
-piece100 = PhotoImage(file=path+'assets/piece100.png')
-piece200 = PhotoImage(file=path+'assets/piece200.png')
+piece1 = PhotoImage(file=path+'/assets/piece1.png')
+piece2 = PhotoImage(file=path+'/assets/piece2.png')
+piece5 = PhotoImage(file=path+'/assets/piece5.png')
+piece10 = PhotoImage(file=path+'/assets/piece10.png')
+piece20 = PhotoImage(file=path+'/assets/piece20.png')
+piece50 = PhotoImage(file=path+'/assets/piece50.png')
+piece100 = PhotoImage(file=path+'/assets/piece100.png')
+piece200 = PhotoImage(file=path+'/assets/piece200.png')
 
 lbx.pack()
-texte = Label(text='Cafe : 0.50 €\nBonbon : 1.50 €\nChocolat : 2.00 €', font=font, bg=background, fg=fg).pack()
+texte = Label(text='Cafe : 0.50 €\nBonbon : 1.50 €\nEnfant : 2.00 €', font=font, bg=background, fg=fg).pack()
 nb_piece_texte.pack()
 button_payer = Button(page, text='Payer', font=font, command=lambda:[monnais(argent)]).pack()
 
