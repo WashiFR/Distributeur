@@ -95,7 +95,7 @@ nb_piece_texte = Label(text='\nArgents insérés : '+str(float(argent/100))+' �
 lbx = Listbox(page)
 lbx.insert(1, 'Cafe')
 lbx.insert(2, 'Bonbon')
-lbx.insert(3, 'Enfant')
+lbx.insert(3, 'Chocolat')
 
 #avoir les images pour les utiliser
 piece1 = PhotoImage(file=path+'/assets/piece1.png')
@@ -108,7 +108,7 @@ piece100 = PhotoImage(file=path+'/assets/piece100.png')
 piece200 = PhotoImage(file=path+'/assets/piece200.png')
 
 lbx.pack()
-texte = Label(text='Cafe : 0.50 €\nBonbon : 1.50 €\nEnfant : 2.00 €', font=font, bg=background, fg=fg).pack()
+texte = Label(text='Cafe : 0.50 €\nBonbon : 1.50 €\nChocolat : 2.00 €', font=font, bg=background, fg=fg).pack()
 nb_piece_texte.pack()
 button_payer = Button(page, text='Payer', font=font, command=lambda:[monnais(argent)]).pack()
 
